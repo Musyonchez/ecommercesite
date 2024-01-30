@@ -75,7 +75,7 @@ const Footer = () => {
           />
         </div>
       </div>
-      <div className=" flex flex-wrap space-x-5 max-sm:justify-center py-5 mt-5 bg-neutral-800 text-neutral-600">
+      <div className=" flex flex-wrap space-x-5 max-sm:justify-center py-2 text-lg mt-5 bg-neutral-800 text-neutral-600">
         <p className=" ml-5">C 2016 MANGO All rights reserved</p>
         <p>Privacy Policy | Terms & Conditions</p>
       </div>
