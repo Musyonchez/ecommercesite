@@ -5,6 +5,7 @@ import facebook from "../../public/facebook-logo.svg";
 import instagram from "../../public/instagram-logo.svg";
 import pintrest from "../../public/pintrest-logo.svg";
 import twitter from "../../public/twitter-logo.svg";
+import Link from "next/link";
 
 const Navbar = () => {
   const [isSideMenuVisible, setSideMenuVisible] = useState(false);
@@ -24,7 +25,6 @@ const Navbar = () => {
           <Image
             src={logo}
             alt="Logo"
-            layout="responsive"
             width={200}
             height={200}
           />
@@ -39,7 +39,9 @@ const Navbar = () => {
         <div className=" flex">
           <ul className=" flex items-center space-x-2">
             <li className=" hidden sm:flex">Search</li>
+            <Link href="/login">
             <li className=" hidden sm:flex">Sign in</li>
+</Link>
             <li className=" hidden sm:flex">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -48,9 +50,9 @@ const Navbar = () => {
                 className="w-6 h-6"
               >
                 <path
-                  fill-rule="evenodd"
+                  fillRule="evenodd"
                   d="M12 1.5a5.25 5.25 0 0 0-5.25 5.25v3a3 3 0 0 0-3 3v6.75a3 3 0 0 0 3 3h10.5a3 3 0 0 0 3-3v-6.75a3 3 0 0 0-3-3v-3c0-2.9-2.35-5.25-5.25-5.25Zm3.75 8.25v-3a3.75 3.75 0 1 0-7.5 0v3h7.5Z"
-                  clip-rule="evenodd"
+                  clipRule="evenodd"
                 />
               </svg>
             </li>
@@ -59,13 +61,13 @@ const Navbar = () => {
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
-                stroke-width="1.5"
+                strokeWidth={1.5}
                 stroke="currentColor"
                 className="w-8 h-8 font-extrabold"
               >
                 <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                   d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
                 />
               </svg>
@@ -85,7 +87,6 @@ const Navbar = () => {
               <Image
                 src={logo}
                 alt="Logo"
-                layout="responsive"
                 width={200}
                 height={200}
               />

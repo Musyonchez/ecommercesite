@@ -9,7 +9,6 @@ const Footer = () => {
         <Image
           src={logo}
           alt="Logo"
-          layout="responsive"
           width={200}
           height={200}
         />
@@ -67,7 +66,7 @@ const Footer = () => {
           </div>
         </div>
         <div>
-          <p className=" font-bold">Newsletter:</p>
+          <label className=" font-bold">Newsletter:</label>
           <input
             type="text"
             className=" border-0 border-b-2 border-black w-80 sm:w-96"
