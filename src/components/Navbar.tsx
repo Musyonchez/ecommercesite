@@ -22,12 +22,13 @@ const Navbar = () => {
     <>
       <div className=" flex justify-between items-center pt-3 pl-3 pr-2 pb-1 bg-white fixed w-full">
         <div className=" w-40">
-          <Image
+         <Link href="/">
+         <Image
             src={logo}
             alt="Logo"
             width={200}
             height={200}
-          />
+          /></Link>
         </div>
         <div className=" hidden md:flex">
           <ul className=" flex space-x-5 text-xl">
