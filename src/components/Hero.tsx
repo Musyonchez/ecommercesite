@@ -1,6 +1,7 @@
 import Navbar from "@/components/Navbar";
 import heroImage from "../../public/hero.jpg"; // Make sure the variable name is camelCase
 
+
 const Hero = () => {
   const containerStyle = {
     backgroundImage: `url(${heroImage.src})`, // Use template literals for dynamic image paths
