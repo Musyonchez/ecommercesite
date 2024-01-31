@@ -66,7 +66,7 @@ const Footer = () => {
           </div>
         </div>
         <div>
-          <label className=" font-bold">Newsletter:</label>
+          <label className=" font-bold">Newsletter: </label>
           <input
             type="text"
             className=" border-0 border-b-2 border-black w-80 sm:w-96"
