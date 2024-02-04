@@ -41,6 +41,12 @@ const Suit_product: React.FC<ProductProps> = ({
 
           <p className="text-3xl font-extrabold">${price}</p>
 
+
+
+
+
+          
+
           <div className=" flex space-x-2">
             <div className=" border-2 flex w-fit p-1 border-gray-600 rounded-full">
               <button className=" bg-gray-800 h-8 w-8 rounded-full">36</button>
