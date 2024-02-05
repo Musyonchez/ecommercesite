@@ -9,12 +9,12 @@ import Outfit from "./Outfit";
 const Products = () => {
   return (
     <div className=" flex flex-col p-1 space-y-2">
-     {/* <Shirts />
+     <Shirts />
      <Cotton_Shirt />
-     <Collection /> */}
+     <Collection />
      <Group />
-     {/* <Outfit />
-     <Three_items /> */}
+     <Outfit />
+     <Three_items />
     </div>
   );
 };
