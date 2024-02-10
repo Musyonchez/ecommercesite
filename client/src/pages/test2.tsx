@@ -1,28 +1,20 @@
 // ExampleComponent.tsx
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchProductRequest } from '../actions/productActions';
-import { RootState } from '../store/reducers';
+import React, { useEffect } from "react";
+import { useSelector } from "react-redux";
+import { RootState } from "../store/reducers";
 import Link from "next/link";
 
-
 const ExampleComponent: React.FC = () => {
-  const dispatch = useDispatch();
   const productData = useSelector((state: RootState) => state.product.data);
   const loading = useSelector((state: RootState) => state.product.loading);
   const error = useSelector((state: RootState) => state.product.error);
 
-  useEffect(() => {
-    dispatch(fetchProductRequest());
-  }, [dispatch]);
-
-
   return (
     <div>
-      <Link href="/test2">
+      <Link href="/test">
         <p>Products</p>
       </Link>
-            {loading && <p>Loading...</p>}
+      {loading && <p>Loading...</p>}
       {error && <p>Error: {error}</p>}
       {productData && !Array.isArray(productData) ? (
         <div>
