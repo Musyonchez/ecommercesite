@@ -1,5 +1,7 @@
 // store/reducers/productReducer.ts
 import { Action } from 'redux';
+import { Product } from '../../types'; // Replace 'Product' with the actual type of your product object
+
 
 // Define a more specific action type with a payload property
 interface FetchProductSuccessAction extends Action {
@@ -37,8 +39,18 @@ const productReducer = (state: ProductState = initialState, action: ProductActio
       return { ...state, loading: true, error: null };
     case 'FETCH_PRODUCT_SUCCESS':
       // Now TypeScript knows that action.payload exists
-      return { ...state, data: action.payload, loading: false, error: null };
-    case 'FETCH_PRODUCT_FAILURE':
+ // Check if the product with the same ID already exists
+ const existingProductIndex = state.data.findIndex((product : Product) => product.id === action.payload.id);
+
+ if (existingProductIndex !== -1) {
+   // If exists, create a new array with the updated product
+   const newData = [...state.data];
+   newData[existingProductIndex] = action.payload;
+   return { ...state, data: newData, loading: false, error: null };
+ } else {
+   // If doesn't exist, add the new product to the array
+   return { ...state, data: [...state.data, action.payload], loading: false, error: null };
+ }    case 'FETCH_PRODUCT_FAILURE':
       // TypeScript knows that action.payload exists and is a string
       return { ...state, loading: false, error: action.payload };
     default:
