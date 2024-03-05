@@ -4,7 +4,10 @@ import heroImage from "../../public/hero.jpg"; // Make sure the variable name is
 
 const Hero = () => {
   const containerStyle = {
-    backgroundImage: `url(${heroImage.src})`, // Use template literals for dynamic image paths
+    // backgroundImage: `url(${heroImage.src})`, // Use template literals for dynamic image paths
+    // backgroundImage: `url('https://soltase.s3.us-west-1.amazonaws.com/profilephoto.e452bcae609e0a6729ab.jpeg')`, // Use template literals for dynamic image paths
+    backgroundImage: `url('https://soltase.s3.us-west-1.amazonaws.com/fileName')`, // Use template literals for dynamic image paths
+
     backgroundSize: "cover",
     backgroundPosition: "center",
   };
