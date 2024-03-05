@@ -1,53 +1,63 @@
-// ExampleComponent.tsx
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchProductRequest } from '../actions/productActions';
-import { RootState } from '../store/reducers';
-import Link from "next/link";
-import { Product } from '../types/product'; // Import the Product type
+import { useState } from "react";
 
-const ExampleComponent: React.FC = () => {
-  const dispatch = useDispatch();
-  const productData = useSelector((state: RootState) => state.product.data);
-  const loading = useSelector((state: RootState) => state.product.loading);
-  const error = useSelector((state: RootState) => state.product.error);
+function FileUpload() {
+  const [file, setFile] = useState<File | null>(null);
+  const [loading, setLoading] = useState(false);
+  const [successMessage, setSuccessMessage] = useState<string | null>(null);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
-  useEffect(() => {
-    dispatch(fetchProductRequest());
-  }, [dispatch]);
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const files = e.target.files;
+    if (files && files.length > 0) {
+      setFile(files[0]); // Directly use the File object
+    }
+  };
+
+  const handleSubmit = async () => {
+    try {
+      if (!file) {
+        console.error("No file selected.");
+        return;
+      }
+
+      setLoading(true);
+
+      // Create a FormData object and append the file to it
+      const formData = new FormData();
+      formData.append("file", file);
+
+      console.log("file from fileupload rest api", file)
+
+
+      // Send a POST request to your REST API endpoint
+      const response = await fetch("http://localhost:5000/upload", {
+        method: "POST",
+        body: formData,
+      });
+
+      if (response.ok) {
+        setSuccessMessage("File uploaded successfully!");
+      } else {
+        setErrorMessage("Error uploading file. Please try again.");
+      }
+    } catch (error) {
+      console.error("Error uploading file:", error);
+      setErrorMessage("Error uploading file. Please try again.");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div>
-      <Link href="/test2">
-        <p>Products</p>
-      </Link>
-      {loading && <p>Loading...</p>}
-      {error && <p>Error: {error}</p>}
-      {productData && Array.isArray(productData) && productData.length > 0 ? (
-        <div>
-          <h2>Product Data</h2>
-          <ul>
-            {productData.map((product: Product) => (
-              <li key={product.id}>
-                <h3>{product.name}</h3>
-                <p>Description: {product.description}</p>
-                <p>Price: ${product.price}</p>
-                <p>Stock: {product.stock}</p>
-                <p>Category: {product.category}</p>
-                <p>Manufacturer: {product.manufacturer}</p>
-                <p>Image URL: {product.imageUrl}</p>
-                <p>Is Active: {product.isActive ? 'Yes' : 'No'}</p>
-                <p>Colors: {product.colors.map(color => color.name).join(', ')}</p>
-                <p>Sizes: {product.sizes.map(size => size.name).join(', ')}</p>
-                <p>Reference: {product.ref}</p>
-                {/* Add other product information as needed */}
-              </li>
-            ))}
-          </ul>
-        </div>
-      ) : null}
+      <input type="file" onChange={handleFileChange} />
+      <button onClick={handleSubmit} disabled={loading || !file}>
+        Upload
+      </button>
+      {successMessage && <p>{successMessage}</p>}
+      {errorMessage && <p>{errorMessage}</p>}
     </div>
   );
-};
+}
 
-export default ExampleComponent;
+export default FileUpload;
